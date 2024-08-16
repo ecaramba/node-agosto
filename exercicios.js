@@ -20,3 +20,5 @@ function reverter(palavra)
     return nova;
 }
 
+module.exports = reverter;
+
