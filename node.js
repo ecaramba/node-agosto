@@ -1,5 +1,15 @@
-const fs = require("fs");
+// modulo do node
+const fs = require("fs/promises");
+// modulo proprio
 const reverso = require("./exercicios");
+
+//modulo externo
+const excel = require("excel");
+
+excel("arquivo.xslx").then(function(data)
+{
+
+})
 
 console.log("antes");
 
