@@ -11,7 +11,11 @@ app.get("/", function(req, res){
 });
 
 app.get("/contato", function(req, res){
-    res.send("<html><body><h1>página de contato</h1></body></html>");
+    res.sendFile(__dirname + "/form.html");    
+});
+
+app.get("/lista", function(req, res){
+    res.sendFile(__dirname + "/lista.csv");
 });
 
 app.post("/contato", function(req, res){
