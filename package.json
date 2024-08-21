@@ -4,9 +4,9 @@
   "main": "aula1.js",
   "dependencies": {
     "excel": "^1.0.1",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.14"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
