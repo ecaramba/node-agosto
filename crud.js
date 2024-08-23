@@ -4,7 +4,7 @@
 // Update -> atualização
 // Delete -> apagar
 
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 const urlcon = "mongodb+srv://aula-back:aula123456@turma-agosto.mam4s.mongodb.net/";
 
@@ -15,10 +15,52 @@ async function lerDados()
     let db = await conexao.connect();  
     let pasta = db.db("edir").collection("contatos");  
     let dados = await pasta.find({}).toArray();
+    await db.close();
 
     console.log(dados);
 }
 
-lerDados();
+async function cadastrar()
+{
+    let db = await conexao.connect(); 
+    let pasta = db.db("edir").collection("contatos"); 
+    
+    let pessoa = {
+        nome: "tonho",
+        email: "tonhodocaminha@gmail.com",
+        cidade: "araucaria"
+    };
+
+    let retorno = await pasta.insertOne(pessoa);
+    await db.close();
+
+    console.log(retorno);
+}
+
+async function atualizar() {
+    let db = await conexao.connect(); 
+    let pasta = db.db("edir").collection("contatos"); 
+    let pessoa = {_id: new ObjectId('66c685c4a66c10f00674e801') };
+    let valor = {email: "pedropp@gmail.com"}
+    let retorno = await pasta.updateOne(pessoa, {$set: valor});
+    db.close();
+
+    console.log(retorno);
+}
 
 
+async function deletar() 
+{
+    let db = await conexao.connect(); 
+    let pasta = db.db("edir").collection("contatos"); 
+    
+    let pessoa = {_id: new ObjectId('66c685c4a66c10f00674e801') };
+
+    let retorno = await pasta.deleteOne(pessoa);
+    db.close();
+
+    console.log(retorno)
+
+}
+
+deletar();
