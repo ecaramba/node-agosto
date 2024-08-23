@@ -17,18 +17,22 @@ async function lerDados()
     let dados = await pasta.find({}).toArray();
     await db.close();
 
-    console.log(dados);
+    return dados;
 }
 
-async function cadastrar()
+/**
+ * Cadastra novo contato
+ * @param {string} nome 
+ * @param {string} email 
+ */
+async function cadastrar(nome, email)
 {
     let db = await conexao.connect(); 
     let pasta = db.db("edir").collection("contatos"); 
     
     let pessoa = {
-        nome: "tonho",
-        email: "tonhodocaminha@gmail.com",
-        cidade: "araucaria"
+        nome: nome,
+        email: email
     };
 
     let retorno = await pasta.insertOne(pessoa);
@@ -63,4 +67,9 @@ async function deletar()
 
 }
 
-deletar();
+module.exports = {
+    deletar,
+    atualizar,
+    cadastrar,
+    lerDados
+};
